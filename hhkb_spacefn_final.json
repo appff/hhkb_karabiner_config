@@ -10,7 +10,14 @@
             "key_code": "spacebar",
             "modifiers": {
               "optional": [
-                "any"
+                "left_shift",
+                "right_shift",
+                "left_option",
+                "right_option",
+                "left_command",
+                "right_command",
+                "caps_lock",
+                "fn"
               ]
             }
           },
