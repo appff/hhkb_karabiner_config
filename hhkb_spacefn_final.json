@@ -1,8 +1,8 @@
 {
-  "title": "HHKB SpaceFN Safe Hold — navigation, editing, symbols, media, function keys",
+  "title": "HHKB Ergo — ergonomic SpaceFN layout for HHKB",
   "rules": [
     {
-      "description": "HHKB only: Safe-hold SpaceFN with navigation, editing, symbols, media, and F1–F12",
+      "description": "HHKB Ergo: ergonomic SpaceFN with navigation, editing, symbols, media, and F1–F12",
       "manipulators": [
         {
           "type": "basic",

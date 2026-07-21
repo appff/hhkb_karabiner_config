@@ -1,43 +1,60 @@
-# HHKB Safe-Hold SpaceFN Karabiner Config
+# HHKB Ergo
 
-HHKB의 `Space`를 짧게 누르면 일반 공백으로, 의도적으로 50ms 이상 누르면 탐색·편집·기호·미디어·기능 키 레이어로 사용하는 [Karabiner-Elements](https://karabiner-elements.pqrs.org/) Complex Modification 설정입니다.
+An ergonomic SpaceFN layout for HHKB designed to reduce pinky strain and wrist fatigue.
 
-오른손 손목이 바깥쪽으로 꺾이는 동작과 오른쪽 새끼손가락에 집중되는 키 입력을 줄이기 위해 설계했습니다. 자주 사용하는 탐색·편집·기호 키를 왼쪽 엄지로 누르는 `SpaceFN` 레이어에 배치해, 오른손의 이동과 부담을 줄이는 것이 목표입니다. 손 크기와 타이핑 습관에 따라 매핑과 홀드 시간을 조정해 사용할 수 있습니다.
+[한국어 문서](./README.ko.md)
 
-빠른 타이핑에서 `Space`를 떼기 전에 다음 글자를 누르더라도 공백과 글자를 모두 보존하도록 롤오버 안전 처리를 포함합니다.
+HHKB Ergo was created for a specific ergonomic problem: repeatedly reaching with the right pinky and bending the right wrist outward was causing discomfort and fatigue. This layout moves frequently used navigation, editing, symbol, media, and function actions to a SpaceFN layer operated with the left thumb, reducing right-hand movement and load.
 
-## Space 판정 방식
+This Karabiner-Elements complex modification turns the HHKB `Space` key into two behaviors:
 
-| 입력 | 동작 |
+- Tap `Space` for a normal space.
+- Hold `Space` for 50 ms or longer to activate SpaceFN.
+
+The configuration also includes rollover-safe handling so a fast `Space` + key sequence preserves both the space and the following key when the sequence is intended as normal typing.
+
+## Space behavior
+
+| Input | Behavior |
 | --- | --- |
-| `Space`를 500ms 이내에 단독으로 탭 | `Space` |
-| `Space`를 누른 뒤 50ms 이내에 다른 키 입력 | 일반 `Space + 해당 키` 입력 |
-| `Space`를 50ms 이상 홀드 | SpaceFN 레이어 활성화 |
-| 활성화 후 매핑 키 입력 | SpaceFN 레이어 기능 실행 |
-| `Space`에서 손을 뗌 | SpaceFN 레이어 해제 |
-| `Ctrl + Space` | SpaceFN을 거치지 않고 입력 소스 전환 단축키로 전달 |
+| Tap `Space` alone within 500 ms | Normal `Space` |
+| Press another key within 50 ms of `Space` | Normal `Space` + key input |
+| Hold `Space` for 50 ms or longer | Activate the SpaceFN layer |
+| Press a mapped key while the layer is active | Run the SpaceFN action |
+| Release `Space` | Clear the SpaceFN layer |
+| `Ctrl + Space` | Pass through to macOS for input-source switching |
 
-예를 들어 50ms 이내에 `Space → A/S/D`를 겹쳐 입력하면 음량 기능이 아니라 `공백 + A/S/D`가 정상 입력됩니다. 50ms 이상 Space를 홀드한 뒤 A/S/D를 누르면 볼륨 감소·증가·음소거가 실행됩니다.
+If the target key arrives before the 50 ms threshold, the SpaceFN attempt is canceled and the delayed action restores a normal space. For reliable SpaceFN chords, press `Space` first and hold it briefly before pressing the target key.
 
-> `Space`만 500ms 이상 누른 뒤 놓으면 공백이 입력되지 않습니다. SpaceFN 조합은 먼저 `Space`를 약 50ms 홀드한 뒤 대상 키를 누르세요.
+> Holding `Space` alone for more than 500 ms does not emit a space. For a SpaceFN chord, hold `Space` for roughly 50 ms before pressing the target key.
 
-## 레이아웃 맵
+## Layout map
 
-아래 표기는 `[실제 키 / 출력]`입니다. 표시하지 않은 키는 SpaceFN 레이어에서 별도 매핑이 없습니다.
+The table below lists every SpaceFN mapping as `[physical key / output]`. Keys not listed have no SpaceFN mapping.
 
-```text
-Space 50ms hold +
+| Physical key | SpaceFN output | Purpose |
+| --- | --- | --- |
+| `1`–`0` | `F1`–`F10` | Function keys |
+| `-` / `=` | `F11` / `F12` | Function keys |
+| `W` / `E` | `[` / `]` | Brackets |
+| `R` / `T` | `'` / `/` | Quotes and slash |
+| `Y` / `H` | Page Up / Page Down | Page navigation |
+| `U` / `O` | Home / End | Line navigation |
+| `I` / `J` / `K` / `L` | ↑ / ← / ↓ / → | Cursor movement |
+| `A` / `S` / `D` | Volume down / volume up / mute | Media |
+| `F` | Escape | Editing |
+| `G` | `;` | Symbol |
+| `M` | Backspace | Editing |
+| `,` | Forward Delete | Editing |
+| `.` | Enter | Editing |
+| `X` / `C` | `-` / `=` | Symbols |
+| `V` | Backslash | Symbol |
+| `B` | Backtick in ABC; `₩` in Korean input | Symbol |
+| `N` | `?` | Symbol |
 
-    [1/F1] [2/F2] [3/F3] [4/F4] [5/F5] [6/F6] [7/F7] [8/F8] [9/F9] [0/F10] [-/F11] [=/F12]
+### Navigation and editing
 
-       Q     [W/[]  [E/]]  [R/']  [T//] [Y/PgUp] [U/Home] [I/↑] [O/End]    P
- [A/Vol−] [S/Vol+] [D/Mute] [F/Esc] [G/;] [H/PgDn] [J/←] [K/↓] [L/→]    ;
-       Z     [X/−]   [C/=]  [V/\] [B/`·₩] [N/?]   [M/⌫]   [,/⌦] [./Enter]  /
-```
-
-### 탐색 및 편집
-
-| 조합 | 동작 |
+| Combination | Action |
 | --- | --- |
 | `Space + I/J/K/L` | ↑ / ← / ↓ / → |
 | `Space + U/O` | Home / End |
@@ -47,9 +64,9 @@ Space 50ms hold +
 | `Space + .` | Enter |
 | `Space + F` | Escape |
 
-### 기호
+### Symbols
 
-| 조합 | 출력 | Shift를 먼저 누른 조합 |
+| Combination | Output | With Shift held first |
 | --- | --- | --- |
 | `Space + W/E` | `[` / `]` | `{` / `}` |
 | `Space + R` | `'` | `"` |
@@ -57,61 +74,64 @@ Space 50ms hold +
 | `Space + G` | `;` | `:` |
 | `Space + X` | `-` | `_` |
 | `Space + C` | `=` | `+` |
-| `Space + V` | `\` | `|` |
-| `Space + B` | ABC에서는 `` ` ``, 두벌식에서는 `₩` | 입력 소스에 따라 `~` 등 |
+| `Space + V` | Backslash | `|` |
+| `Space + B` | Backtick in ABC; `₩` in Korean input | Input-source dependent |
 | `Space + N` | `?` | — |
 
-Shift 기호는 `Shift`를 먼저 누른 상태에서 `Space`를 50ms 홀드한 뒤 대상 키를 누르는 순서가 가장 안정적입니다.
+For shifted symbols, press `Shift` first, hold `Space` for about 50 ms, and then press the target key.
 
-### 미디어 및 기능 키
+### Media and function keys
 
-| 조합 | 동작 |
+| Combination | Action |
 | --- | --- |
-| `Space + A/S/D` | 볼륨 감소 / 증가 / 음소거 |
+| `Space + A/S/D` | Volume down / volume up / mute |
 | `Space + 1~0` | F1~F10 |
 | `Space + -` | F11 |
 | `Space + =` | F12 |
 
-일반 타이핑으로 A/S/D를 입력하려면 Space를 50ms 이내에 다음 키와 겹쳐 누르고, 미디어 기능을 사용하려면 Space를 50ms 이상 홀드한 뒤 A/S/D를 누르세요.
+For normal typing, press `Space` and the next A/S/D key within 50 ms. For media actions, hold `Space` for at least 50 ms before pressing A/S/D.
 
-`Ctrl + Space`는 SpaceFN 컨트롤러가 매칭하지 않도록 제외되어 원본 그대로 macOS에 전달됩니다. 따라서 컨트롤을 누른 상태에서 Space를 50ms 이상 유지해도 SpaceFN 레이어가 켜지지 않고 입력 소스 전환 단축키가 실행됩니다.
+`Ctrl + Space` is excluded from the SpaceFN controller, so it is passed to macOS unchanged for input-source switching.
 
-## 타이밍 조정
+## Timing
 
-[`hhkb_spacefn_final.json`](./hhkb_spacefn_final.json)의 다음 두 값은 항상 같은 값으로 유지해야 합니다.
+The following two values in [`hhkb_spacefn_final.json`](./hhkb_spacefn_final.json) must always be kept identical:
 
 ```json
 "basic.to_if_held_down_threshold_milliseconds": 50,
 "basic.to_delayed_action_delay_milliseconds": 50
 ```
 
-- 일반 타이핑에서 레이어가 여전히 실수로 켜지면 두 값을 함께 `75`, `100`, `120` 또는 `150`으로 올립니다.
-- 50ms는 빠른 반응을 위한 실험값이며, 오작동이 늘면 75ms로 복귀합니다.
-- 단독 Space 허용 시간은 `basic.to_if_alone_timeout_milliseconds: 500`입니다.
+- The current 50 ms value is an experimental fast-response setting.
+- If SpaceFN activates accidentally during normal typing, raise both values together to `75`, `100`, `120`, or `150`.
+- If 50 ms causes too many false activations, return to the previously tested 75 ms setting.
+- The standalone Space timeout is `basic.to_if_alone_timeout_milliseconds: 500`.
 
-## 적용 대상과 구현 방식
+## Implementation and device scope
 
-- 장치 조건: `vendor_id: 1278` (`0x04FE`), `product_id: 33` (`0x0021`)
-- SpaceFN 상태 변수: `hhkb_spacefn`
-- 구성: 규칙 1개, manipulator 38개(레이어 제어 1개 + 기능·기호 37개)
-- `Space`를 50ms 홀드하면 `hhkb_spacefn = 1`, 놓으면 `key_up_value`로 `0`이 됩니다.
-- 50ms 이전의 다른 키 입력은 `to_delayed_action.to_if_canceled`가 먼저 공백을 복원합니다.
-- 일반 레이어 매핑은 추가 modifier를 보존하므로 Shift 기호와 탐색 modifier를 사용할 수 있습니다.
-- 키 매핑은 장치 ID가 일치하고 `hhkb_spacefn = 1`일 때만 동작하므로 다른 키보드에는 적용되지 않습니다.
+- Device condition: vendor ID `1278` (`0x04FE`), product ID `33` (`0x0021`)
+- SpaceFN state variable: `hhkb_spacefn`
+- One rule with 38 manipulators: one layer controller plus 37 function and symbol mappings
+- Holding `Space` for 50 ms sets `hhkb_spacefn = 1`; releasing it resets the variable through `key_up_value`
+- A key arriving before 50 ms triggers `to_delayed_action.to_if_canceled`, which restores a normal space
+- Mappings preserve additional modifiers, allowing shifted symbols and navigation modifiers
+- Device conditions and the state variable keep the mappings limited to the HHKB
 
-`key_up_value`를 사용하므로 Karabiner-Elements 14.12.6 이상이 필요합니다.
+The `key_up_value` behavior requires Karabiner-Elements 14.12.6 or later.
 
-장치가 인식되지 않으면 Karabiner-EventViewer에서 HHKB의 `vendor_id`와 `product_id`를 확인한 뒤 [`hhkb_spacefn_final.json`](./hhkb_spacefn_final.json)의 장치 조건을 수정하세요.
+If the keyboard is not detected, use Karabiner-EventViewer to check its vendor and product IDs, then update the device condition in [`hhkb_spacefn_final.json`](./hhkb_spacefn_final.json).
 
-## 사용법
+## Installation
 
-`hhkb_spacefn_final.json` 파일을 사용자 홈의 `.config/karabiner/assets/complex_modifications` 폴더에 복사한 뒤 Karabiner-Elements에서 규칙을 추가하면 됩니다.
+Copy the configuration into Karabiner-Elements' complex-modifications directory:
 
 ```bash
 cp hhkb_spacefn_final.json ~/.config/karabiner/assets/complex_modifications/
 ```
 
-## 파일
+Then open Karabiner-Elements, go to **Complex Modifications**, and enable the HHKB Ergo rule.
 
-- [`hhkb_spacefn_final.json`](./hhkb_spacefn_final.json): Karabiner-Elements에 불러올 설정
-- [`README.md`](./README.md): 레이아웃, 안전한 Space 판정 방식, 타이밍 조정법
+## Files
+
+- [`hhkb_spacefn_final.json`](./hhkb_spacefn_final.json): Karabiner-Elements complex modification
+- [`README.ko.md`](./README.ko.md): Korean documentation
