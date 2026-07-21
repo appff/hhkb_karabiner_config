@@ -1,6 +1,8 @@
 # HHKB Ergo
 
-An ergonomic SpaceFN layout for HHKB designed to reduce pinky strain and wrist fatigue.
+HHKB ergo is an ergonomic keymap designed to reduce pinky strain, minimize wrist deviation, and make long coding sessions more comfortable—without sacrificing the iconic HHKB experience.
+
+> Don't adapt your hands to the keyboard. Adapt the keyboard to your hands.
 
 [한국어 문서](./README.ko.md)
 

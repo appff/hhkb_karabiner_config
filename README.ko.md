@@ -1,10 +1,14 @@
 # HHKB Ergo
 
-오른손 새끼손가락과 오른쪽 손목이 바깥쪽으로 꺾이는 동작 때문에 생기는 부담과 피로를 줄이기 위한 HHKB용 인체공학적 SpaceFN 레이아웃입니다.
+HHKB Ergo는 새끼손가락의 부담과 오른쪽 손목이 바깥쪽으로 꺾이는 동작을 줄이고, 상징적인 HHKB 사용 경험은 유지하면서 장시간 코딩을 더 편안하게 만드는 인체공학적 키맵입니다.
+
+> Don't adapt your hands to the keyboard. Adapt the keyboard to your hands.
+>
+> 손을 키보드에 맞추지 말고, 키보드를 손에 맞추세요.
 
 [English README](./README.md)
 
-`HHKB Ergo`는 오른쪽 새끼손가락을 반복적으로 뻗고 오른쪽 손목을 바깥쪽으로 꺾어야 하는 사용 습관에서 오는 불편을 줄이기 위해 만들었습니다. 자주 사용하는 탐색·편집·기호·미디어·기능 키를 왼쪽 엄지로 누르는 SpaceFN 레이어에 배치해 오른손의 이동과 부담을 줄이는 것이 목표입니다.
+오른손 새끼손가락과 오른쪽 손목이 바깥쪽으로 꺾이는 동작 때문에 생기는 부담과 피로를 줄이기 위해 만들었습니다. 자주 사용하는 탐색·편집·기호·미디어·기능 키를 왼쪽 엄지로 누르는 SpaceFN 레이어에 배치해 오른손의 이동과 부담을 줄이는 것이 목표입니다.
 
 이 [Karabiner-Elements](https://karabiner-elements.pqrs.org/) Complex Modification은 HHKB의 `Space`를 다음 두 가지 방식으로 사용합니다.
 
