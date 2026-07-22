@@ -1,14 +1,14 @@
-# HHKB Ergo
+# 60% Ergo
 
-HHKB ergo is an ergonomic keymap designed to reduce pinky strain, minimize wrist deviation, and make long coding sessions more comfortable—without sacrificing the iconic HHKB experience.
+60% Ergo is an ergonomic SpaceFN keymap for 60% and smaller keyboards, designed to reduce pinky strain, minimize wrist deviation, and make long coding sessions more comfortable—without sacrificing a familiar compact-keyboard experience.
 
 > Don't adapt your hands to the keyboard. Adapt the keyboard to your hands.
 
 [한국어 문서](./README.ko.md)
 
-HHKB Ergo was created for a specific ergonomic problem: repeatedly reaching with the right pinky and bending the right wrist outward was causing discomfort and fatigue. This layout moves frequently used navigation, editing, symbol, media, and function actions to a SpaceFN layer operated with the left thumb, reducing right-hand movement and load.
+60% Ergo was created for a specific ergonomic problem: repeatedly reaching with the right pinky and bending the right wrist outward was causing discomfort and fatigue. This layout moves frequently used navigation, editing, symbol, media, and function actions to a SpaceFN layer operated with the left thumb, reducing right-hand movement and load.
 
-This Karabiner-Elements complex modification turns the HHKB `Space` key into two behaviors:
+This Karabiner-Elements complex modification turns the `Space` key on every keyboard connected to this computer into two behaviors:
 
 - Tap `Space` for a normal space.
 - Hold `Space` for 50 ms or longer to activate SpaceFN.
@@ -109,19 +109,23 @@ The following two values in [`hhkb_spacefn_final.json`](./hhkb_spacefn_final.jso
 - If 50 ms causes too many false activations, return to the previously tested 75 ms setting.
 - The standalone Space timeout is `basic.to_if_alone_timeout_milliseconds: 500`.
 
-## Implementation and device scope
+## Compatibility and scope
 
-- Device condition: vendor ID `1278` (`0x04FE`), product ID `33` (`0x0021`)
+The layout is intended for standard 60% and smaller keyboards with an HHKB-like physical arrangement. Karabiner-Elements cannot identify a keyboard's physical layout automatically, so this computer-wide rule applies to every connected keyboard. Use it when the connected keyboards share a compatible compact layout.
+
+## Implementation and scope
+
+- No device filter: the rule applies to all keyboards connected to this computer
 - SpaceFN state variable: `hhkb_spacefn`
 - One rule with 38 manipulators: one layer controller plus 37 function and symbol mappings
 - Holding `Space` for 50 ms sets `hhkb_spacefn = 1`; releasing it resets the variable through `key_up_value`
 - A key arriving before 50 ms triggers `to_delayed_action.to_if_canceled`, which restores a normal space
 - Mappings preserve additional modifiers, allowing shifted symbols and navigation modifiers
-- Device conditions and the state variable keep the mappings limited to the HHKB
+- The state variable limits mapped actions to an active SpaceFN layer, while the absence of a device filter makes the rule keyboard-agnostic on this computer
 
 The `key_up_value` behavior requires Karabiner-Elements 14.12.6 or later.
 
-If the keyboard is not detected, use Karabiner-EventViewer to check its vendor and product IDs, then update the device condition in [`hhkb_spacefn_final.json`](./hhkb_spacefn_final.json).
+Because the rule is intentionally device-agnostic, it does not require keyboard-specific vendor or product IDs.
 
 ## Installation
 
@@ -131,7 +135,7 @@ Copy the configuration into Karabiner-Elements' complex-modifications directory:
 cp hhkb_spacefn_final.json ~/.config/karabiner/assets/complex_modifications/
 ```
 
-Then open Karabiner-Elements, go to **Complex Modifications**, and enable the HHKB Ergo rule.
+Then open Karabiner-Elements, go to **Complex Modifications**, and enable the 60% Ergo rule.
 
 ## Files
 
